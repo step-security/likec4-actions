@@ -10,10 +10,6 @@ on:
         description: "Build script to run"
         required: false
         default: "yarn build"
-      package_manager:
-        description: "Package manager to use"
-        required: false
-        default: "yarn"
       yarn_version:
         description: "Yarn version to use"
         required: false
@@ -33,5 +29,4 @@ jobs:
     with:
       tag: "${{ github.event.inputs.tag }}"
       script: ${{ inputs.script || 'yarn build' }}
-      package_manager: ${{ inputs.package_manager || 'yarn' }}
       yarn_version: ${{ inputs.yarn_version || '4.0.2' }}
