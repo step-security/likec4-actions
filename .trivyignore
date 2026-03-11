@@ -1,24 +1,25 @@
-# Unfixable Ubuntu 22.04 (Jammy) vulnerabilities — no patches available from upstream.
-# These come from the Playwright base image (mcr.microsoft.com/playwright:v1.58.2-jammy).
+# Ubuntu 22.04 (Jammy) vulnerabilities from the Playwright base image.
+# No patches available from upstream. None affect this action — see reasons below.
 # Re-evaluate when upgrading the base image or when Ubuntu publishes fixes.
 
-# coreutils
+# coreutils — chroot escape; not applicable, action does not use chroot
 CVE-2016-2781
 
-# libpcre3
+# libpcre3 — regex stack exhaustion; not invoked with untrusted patterns
 CVE-2017-11164
 
-# libcairo
+# libcairo — requires crafted font files or SVG input; action only processes trusted user-owned .c4 files
 CVE-2017-7475
 CVE-2018-18064
 CVE-2019-6461
 
-# libopenjp2-7
+# libopenjp2-7 — JPEG 2000 codec DoS; action never processes JPEG 2000 files
 CVE-2019-6988
 CVE-2023-39328
 CVE-2023-39329
 
-# nodejs (bundled with Playwright image)
+# nodejs/openssl (bundled with Playwright image) — TLS/HTTP vulnerabilities require an attacker-controlled
+# server; the only outbound HTTPS call is to the trusted StepSecurity subscription API
 CVE-2019-1563
 CVE-2021-22930
 CVE-2021-23840
@@ -63,81 +64,81 @@ CVE-2025-9232
 CVE-2026-22795
 CVE-2026-22796
 
-# wget
+# wget — redirect header disclosure; wget is not invoked by the action
 CVE-2021-31879
 
-# gcc-12-base
+# gcc-12-base — Rust demangling stack exhaustion; no Rust code in this action
 CVE-2022-27943
 
-# gnupg / dirmngr
+# gnupg/dirmngr — DoS and signature bypass; gnupg is not invoked by the action
 CVE-2022-3219
 CVE-2025-68972
 
-# libpcre2-8-0
+# libpcre2-8-0 — regex infinite loop; not invoked with untrusted patterns
 CVE-2022-41409
 
-# libzstd1
+# libzstd1 — buffer overrun in compression; zstd is not used by the action
 CVE-2022-4899
 
-# shadow-utils (login/passwd)
+# shadow-utils (login/passwd) — user management issues; irrelevant in a container context
 CVE-2023-29383
 CVE-2024-56433
 
-# dbus
+# dbus — IPC assertion failure; dbus is not used by the action
 CVE-2023-34969
 
-# libpixman-1-0
+# libpixman-1-0 — FPE via crafted rendering input; only trusted .c4 files are processed
 CVE-2023-37769
 
-# graphviz
+# graphviz — out-of-bounds read via crafted input; only trusted user-owned .c4 files are processed
 CVE-2023-46045
 
-# libncurses6
+# libncurses6 — segfault via crafted input; terminal UI lib not used by the action
 CVE-2023-50495
 
-# xorg xserver
+# xorg xserver — use-after-free on shutdown; Xvfb is only used internally by Playwright, not exposed
 CVE-2023-5574
 
-# systemd
+# systemd — DNSSEC bypass; DNS resolution is not security-critical in this container
 CVE-2023-7008
 
-# libgcrypt20
+# libgcrypt20 — timing side-channel; libgcrypt is not directly invoked by the action
 CVE-2024-2236
 
-# git
+# git — control character injection via sideband; git is not invoked by the action
 CVE-2024-52005
 
-# avahi
+# avahi — mDNS service discovery issues; avahi is not used by the action
 CVE-2024-52615
 CVE-2024-52616
 CVE-2025-59529
 CVE-2026-24401
 
-# libllvm15
+# libllvm15 — ARM CMSE state leak; LLVM is not invoked by the action
 CVE-2024-7883
 
-# curl (unfixable subset)
+# curl — .netrc credential leak on redirect; curl is not invoked by the action
 CVE-2025-0167
 
-# libxslt1.1
+# libxslt1.1 — use-after-free in XSLT processing; XSLT is not used by the action
 CVE-2025-10911
 
-# elfutils (libdw1/libelf1)
+# elfutils (libdw1/libelf1) — memory corruption in ELF parsing; ELF analysis is not performed
 CVE-2025-1352
 CVE-2025-1376
 
-# tar
+# tar — path traversal; tar is not invoked by the action
 CVE-2025-45582
 
-# libicu70
+# libicu70 — stack buffer overflow in tag parsing; only trusted input is processed
 CVE-2025-5222
 
-# openssh-client
+# openssh-client — code execution via crafted URI; SSH is not used by the action
 CVE-2025-61984
 CVE-2025-61985
 
-# libexpat1 (unfixable subset)
+# libexpat1 — DoS via crafted XML; no untrusted XML is processed
 CVE-2025-66382
 
-# libpam
+# libpam — authentication bypass; PAM is irrelevant in this container context
 CVE-2025-8941
