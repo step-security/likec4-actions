@@ -24,7 +24,7 @@ Build website:
           base: baseurl
 
       - name: upload artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: likec4
           path: dist
