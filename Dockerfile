@@ -1,6 +1,6 @@
 # Build Stage
 
-FROM node:20-alpine as builder
+FROM node:20-alpine@sha256:b88333c42c23fbd91596ebd7fd10de239cedab9617de04142dde7315e3bc0afa as builder
 
 WORKDIR /likec4-action
 
@@ -18,7 +18,7 @@ RUN yarn build
 
 # Run Stage
 
-FROM mcr.microsoft.com/playwright:v1.56.1-jammy AS runner
+FROM mcr.microsoft.com/playwright:v1.56.1-jammy@sha256:d518367161e599b64e4e8b83ff180be45bfe22efb78dde77fc4c2942340fe8ca AS runner
 
 RUN apt-get update \
     && apt-get install -y graphviz \
