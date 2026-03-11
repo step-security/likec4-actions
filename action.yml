@@ -1,0 +1,45 @@
+name: LikeC4
+description: LikeC4 GitHub Action
+author: step-security
+
+inputs:
+  action:
+    description: action to perform ("build"/"export"/"codegen")
+    required: false
+  export:
+    description: export views ("png")
+    required: false
+  codegen:
+    description: generate code
+    required: false
+  path:
+    description: directory with likec4 sources
+    required: false
+  output:
+    description: output directory/file
+    required: false
+  base:
+    description: base url the app is being served from
+    required: false
+  likec4-version:
+    description: 'likec4 version to use (default: bundled with action)'
+    required: false
+  use-dot-bin:
+    description: 'if true will use dot binary of graphviz'
+    default: 'false'
+    required: false
+  use-hash-history:
+    description: 'use hash history for navigation, e.g. "/#/view" instead of "/view"'
+    default: 'false'
+    required: false
+  webcomponent-prefix:
+    description: 'Prefix for generated webcomponents'
+    required: false
+
+runs:
+  using: docker
+  image: 'Dockerfile'
+  
+branding:
+  icon: image
+  color: gray-dark
