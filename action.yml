@@ -38,7 +38,7 @@ inputs:
 
 runs:
   using: docker
-  image: 'Dockerfile'
+  image: 'docker://ghcr.io/step-security/likec4-actions:v1.89.0@sha256:d789e82a73915c778c979d8f8df645e39198e89668524b352f6b071a1ee46dff' # v1.89.0
   
 branding:
   icon: image
