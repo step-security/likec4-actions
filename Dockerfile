@@ -1,6 +1,6 @@
 # Build Stage
 
-FROM node:20-alpine@sha256:b88333c42c23fbd91596ebd7fd10de239cedab9617de04142dde7315e3bc0afa as builder
+FROM node:25-alpine@sha256:636c5bc8fa6a7a542bc99f25367777b0b3dd0db7d1ca3959d14137a1ac80bde2 as builder
 
 WORKDIR /likec4-action
 
