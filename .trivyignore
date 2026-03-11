@@ -1,0 +1,144 @@
+# Ubuntu 22.04 (Jammy) vulnerabilities from the Playwright base image.
+# No patches available from upstream. None affect this action — see reasons below.
+# Re-evaluate when upgrading the base image or when Ubuntu publishes fixes.
+
+# coreutils — chroot escape; not applicable, action does not use chroot
+CVE-2016-2781
+
+# libpcre3 — regex stack exhaustion; not invoked with untrusted patterns
+CVE-2017-11164
+
+# libcairo — requires crafted font files or SVG input; action only processes trusted user-owned .c4 files
+CVE-2017-7475
+CVE-2018-18064
+CVE-2019-6461
+
+# libopenjp2-7 — JPEG 2000 codec DoS; action never processes JPEG 2000 files
+CVE-2019-6988
+CVE-2023-39328
+CVE-2023-39329
+
+# nodejs/openssl (bundled with Playwright image) — TLS/HTTP vulnerabilities require an attacker-controlled
+# server; the only outbound HTTPS call is to the trusted StepSecurity subscription API
+CVE-2019-1563
+CVE-2021-22930
+CVE-2021-23840
+CVE-2021-44532
+CVE-2022-40735
+CVE-2023-0464
+CVE-2023-0465
+CVE-2023-0466
+CVE-2023-1255
+CVE-2023-2975
+CVE-2023-3446
+CVE-2023-3817
+CVE-2023-38552
+CVE-2023-39333
+CVE-2023-44487
+CVE-2023-46809
+CVE-2023-5363
+CVE-2023-5678
+CVE-2023-6129
+CVE-2023-6237
+CVE-2024-0727
+CVE-2024-13176
+CVE-2024-22018
+CVE-2024-22025
+CVE-2024-2511
+CVE-2024-27982
+CVE-2024-27983
+CVE-2025-11187
+CVE-2025-15467
+CVE-2025-15468
+CVE-2025-15469
+CVE-2025-23085
+CVE-2025-66199
+CVE-2025-68160
+CVE-2025-69418
+CVE-2025-69419
+CVE-2025-69420
+CVE-2025-69421
+CVE-2025-9230
+CVE-2025-9231
+CVE-2025-9232
+CVE-2026-22795
+CVE-2026-22796
+
+# wget — redirect header disclosure; wget is not invoked by the action
+CVE-2021-31879
+
+# gcc-12-base — Rust demangling stack exhaustion; no Rust code in this action
+CVE-2022-27943
+
+# gnupg/dirmngr — DoS and signature bypass; gnupg is not invoked by the action
+CVE-2022-3219
+CVE-2025-68972
+
+# libpcre2-8-0 — regex infinite loop; not invoked with untrusted patterns
+CVE-2022-41409
+
+# libzstd1 — buffer overrun in compression; zstd is not used by the action
+CVE-2022-4899
+
+# shadow-utils (login/passwd) — user management issues; irrelevant in a container context
+CVE-2023-29383
+CVE-2024-56433
+
+# dbus — IPC assertion failure; dbus is not used by the action
+CVE-2023-34969
+
+# libpixman-1-0 — FPE via crafted rendering input; only trusted .c4 files are processed
+CVE-2023-37769
+
+# graphviz — out-of-bounds read via crafted input; only trusted user-owned .c4 files are processed
+CVE-2023-46045
+
+# libncurses6 — segfault via crafted input; terminal UI lib not used by the action
+CVE-2023-50495
+
+# xorg xserver — use-after-free on shutdown; Xvfb is only used internally by Playwright, not exposed
+CVE-2023-5574
+
+# systemd — DNSSEC bypass; DNS resolution is not security-critical in this container
+CVE-2023-7008
+
+# libgcrypt20 — timing side-channel; libgcrypt is not directly invoked by the action
+CVE-2024-2236
+
+# git — control character injection via sideband; git is not invoked by the action
+CVE-2024-52005
+
+# avahi — mDNS service discovery issues; avahi is not used by the action
+CVE-2024-52615
+CVE-2024-52616
+CVE-2025-59529
+CVE-2026-24401
+
+# libllvm15 — ARM CMSE state leak; LLVM is not invoked by the action
+CVE-2024-7883
+
+# curl — .netrc credential leak on redirect; curl is not invoked by the action
+CVE-2025-0167
+
+# libxslt1.1 — use-after-free in XSLT processing; XSLT is not used by the action
+CVE-2025-10911
+
+# elfutils (libdw1/libelf1) — memory corruption in ELF parsing; ELF analysis is not performed
+CVE-2025-1352
+CVE-2025-1376
+
+# tar — path traversal; tar is not invoked by the action
+CVE-2025-45582
+
+# libicu70 — stack buffer overflow in tag parsing; only trusted input is processed
+CVE-2025-5222
+
+# openssh-client — code execution via crafted URI; SSH is not used by the action
+CVE-2025-61984
+CVE-2025-61985
+
+# libexpat1 — DoS via crafted XML; no untrusted XML is processed
+CVE-2025-66382
+
+# libpam — authentication bypass; PAM is irrelevant in this container context
+CVE-2025-8941
