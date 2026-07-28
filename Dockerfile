@@ -18,7 +18,7 @@ RUN yarn build
 
 # Run Stage
 
-FROM mcr.microsoft.com/playwright:v1.58.2-jammy@sha256:4698a73749c5848d3f5fcd42a2174d172fcad2b2283e087843b115424303a565 AS runner
+FROM mcr.microsoft.com/playwright:v1.62.0-jammy@sha256:b012874f829d298730411256666afcaeaeebaf505a0cf4c2f668d6dedb3d1e80 AS runner
 
 RUN apt-get update \
     && apt-get upgrade -y \
